@@ -1,0 +1,230 @@
+﻿@model GtdWebAspNetCore.Models.Factura
+
+@{
+    ViewData["Title"] = "Detalle Factura";
+}
+
+<div class="card">
+    <div class="card-header bg-dark text-uppercase text-white text-center mb-2 pt-0" style="height:25px;">
+        <h6>Factura - Detalle</h6>
+    </div>
+
+    <form id="CodeSbyAnizForm">
+
+        <div class="col-12 btn-group">
+
+            <div class="row col-11 ml-2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group col-2 ">
+                    <label asp-for="NumeroFactura" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="NumeroFactura" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Fecha" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Fecha" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="TipodePago" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="TipodePago" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="DocumentoCliente" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="DocumentoCliente" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="NombreCliente" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="NombreCliente" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Subtotal" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Subtotal" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Descuento" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Descuento" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Iva" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Iva" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="TotalDescuento" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="TotalDescuento" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="TotalImpuesto" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="TotalImpuesto" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="form-group col-2">
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="Total" class="control-label"></label>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Total" class="form-control form-control-plaintext" readonly />
+                </div>
+                <div class="col-12 CodesDiv">
+                    <table id="CodesTable" class="table table-borderless table-sm mb-0 pb-0 border CodesTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producto ID
+                                </th>
+                                <th>
+                                    Nombre Producto
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Precio Unitario
+                                </th>
+                                <th style="width:60px;">
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="CsDiv">
+                            @for (int i = 0; i < Model.Detalles.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <input asp-for="@Model.Detalles[i].ProductoID" class="form-control form-control-plaintext" readonly />
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Detalles[i].Producto.NombreProducto" class="form-control form-control-plaintext" readonly />
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Detalles[i].Cantidad" class="form-control form-control-plaintext QtyTotal" readonly />
+                                        <span asp-validation-for="@Model.Detalles[i].Cantidad" class="text-danger"></span>
+                                    </td>                                    
+                                    <td>
+                                        <input asp-for="@Model.Detalles[i].PrecioUnitario" class="form-control form-control-plaintext PriceTotal" readonly />
+                                        <span asp-validation-for="@Model.Detalles[i].PrecioUnitario" class="text-danger"></span>
+                                    </td>
+                                    @*<td>
+                                        <input asp-for="@Model.Detalles[i].Total" class="form-control form-control-plaintext AmountTotal" readonly />
+                                    </td>*@
+                                    <td style="width:60px;">
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+
+
+                    <table class="table table-sm mb-0 pb-0 border">
+                        <thead>
+                            <tr>
+                                <th style="width:13%;">
+                                    Total
+                                </th>
+
+                                <th style="width:13%;">
+                                </th>
+
+                                <th style="width:13%;">
+                                    <input type="text" id="txtQtyTotal" class="form-control form-control-plaintext" value="" />
+                                </th>
+
+                                <th style="width:13%;">
+                                </th>
+
+                                <th style="width:13%;">
+                                </th>
+
+                                <th style="width:13%;">
+                                </th>
+
+                                <th style="width:13%;">
+                                    <input type="text" id="txtAmountTotal" class="form-control form-control-plaintext" value="" />
+                                </th>
+
+                                <th style="width:9%;">
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+
+
+                <div class="form-group col-12">
+                </div>
+
+                <div class="form-group col-12">
+                </div>
+            </div>
+
+            <div class="form-group btn-group col-1">
+                <div class="form-group invisible">
+                    <select id="mySelect" class="form-control" size="5"
+                            style="visibility: hidden;" asp-items="ViewBag.ProductList">
+                    </select>
+                </div>
+                <div ID="HiddenDiv" style="visibility: hidden;">
+                    <input asp-for="Fecha" class="form-control" />                    
+                    <input id="txtValue" class="form-control col-2 invisible" />                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group btn-group col-12">
+            <div class="col-1"></div>
+            <div class="col-5">
+                <a class="btn btn-dark btn-block" asp-action="Edit" asp-route-id="@Model.Id"
+                   asp-route-pg="@TempData.Peek("CurrentPage")">Editar</a>
+            </div>
+            <div class="col-5">
+                <a class="btn btn-secondary btn-block" asp-action="index"
+                   asp-route-pg="@TempData.Peek("CurrentPage")">Back</a>
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+ CalcTotals();
+
+    </script>
+}
